@@ -4,5 +4,27 @@
   <div><span>id: </span>{{product.id}}</div>
   <div><span>text: </span>{{product.text}}</div>
   <div><span>img: </span>{{product.img}}</div>
+
   <button (click)="goBack()">go back</button>
+
+  <div>
+    <h2>Reviews</h2>
+    <ul class="reviews">
+      <li *ngFor="let review of reviews">
+        <span class="badge">Rate:{{review.rate}}</span> {{review.text}}
+      </li>
+    </ul>
+  </div>
+
+  <div>
+    <label>Rate:
+      <input #rate />
+    </label>
+    <label>Review:
+      <input #review />
+    </label>
+    <button (click)="addReview(rate.value, review.value); rate.value=review.value=''">
+      add
+    </button>
+  </div>
 </div>

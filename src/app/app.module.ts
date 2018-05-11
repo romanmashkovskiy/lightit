@@ -8,6 +8,9 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 import {HttpClientModule} from "@angular/common/http";
 import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
 import { InMemoryDataService }  from './in-memory-data.service';
+import { UsersComponent } from './users/users.component';
+import { RegisterUserComponent } from './register-user/register-user.component';
+import { SigninUserComponent } from './signin-user/signin-user.component';
 
 
 @NgModule({
@@ -15,7 +18,10 @@ import { InMemoryDataService }  from './in-memory-data.service';
     AppComponent,
     ProductsComponent,
     ProductDetailComponent,
-    DashboardComponent
+    DashboardComponent,
+    UsersComponent,
+    RegisterUserComponent,
+    SigninUserComponent
   ],
   imports: [
     BrowserModule,

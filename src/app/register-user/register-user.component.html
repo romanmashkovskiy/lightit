@@ -1,0 +1,20 @@
+<div>
+  <label>Username:
+    <input #username />
+  </label>
+
+
+  <label>Password:
+    <input type="password" #password />
+  </label>
+
+  <button (click)="userExist = userAdded = false; register(username.value, password.value); username.value=password.value='';">
+    register
+  </button>
+  <p *ngIf="userExist">
+    User with such name already exist
+  </p>
+  <p *ngIf="userAdded">
+    User successfully registered
+  </p>
+</div>

@@ -1,10 +1,7 @@
-export  class Review {
+export class Review {
   id: number;
-  product: number;
-  created_by?: {
-    id: number;
-    username: string;
-  };
   rate: number;
   text: string;
+  id_user: number;
+  id_entry: number;
 }

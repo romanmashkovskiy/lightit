@@ -14,7 +14,7 @@
   border-radius: 4px;
 }
 
-.produts li:hover {
+.products li:hover {
   color: #607D8B;
   background-color: #DDD;
   left: .1em;
