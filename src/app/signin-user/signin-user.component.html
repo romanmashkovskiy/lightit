@@ -1,20 +1,14 @@
 <div>
-  <label>Username:
-    <input #username />
+  <label>E-mail:
+    <input #email />
   </label>
-
 
   <label>Password:
     <input type="password" #password />
   </label>
 
-  <button (click)="signin(username.value, password.value); username.value=password.value=''">
-    sign in
+  <button (click)="loginUser(email.value, password.value); email.value=password.value=''">
+    login
   </button>
-  <p *ngIf="signinSuccess">
-    You have successfully logged in
-  </p>
-  <p *ngIf="signinNotSuccess">
-    User with such name or password does not exist
-  </p>
+
 </div>

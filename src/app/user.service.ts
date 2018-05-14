@@ -12,7 +12,11 @@ const httpOptions = {
 
 @Injectable()
 export class UserService {
-  private usersUrl = 'api/users';  // URL to web api
+  private usersUrl = 'http://localhost:3001/api/users';
+  private userRegisterUrl = 'http://localhost:3001/auth/registration';
+  private userLoginUrl= 'http://localhost:3001/auth/login';
+
+  currentUser: User;
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -30,9 +34,19 @@ export class UserService {
       );
   }
 
-  addUser (user: User): Observable<User> {
-    return this.http.post<User>(this.usersUrl, user, httpOptions).pipe(
+  registerUser (user: User): Observable<User> {
+    return this.http.post<User>(this.userRegisterUrl, user, httpOptions).pipe(
+      tap(data => { this.currentUser = data; console.log(this.currentUser)}),
       catchError(this.handleError<User>('addUser'))
     );
   }
+
+  loginUser (user: User): Observable<User> {
+    return this.http.post<User>(this.userLoginUrl, user, httpOptions).pipe(
+      tap(data => { this.currentUser = data; console.log(this.currentUser)}),
+      catchError(this.handleError<User>('loginUser'))
+    );
+  }
+
+
 }

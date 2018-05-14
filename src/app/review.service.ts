@@ -8,7 +8,7 @@ import {Review} from "./models/review";
 
 @Injectable()
 export class ReviewService {
-  private productsUrl = 'api/reviews';  // URL to web api
+  private productsUrl = 'http://localhost:3001/api/reviews';
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -21,7 +21,7 @@ export class ReviewService {
 
   getReviews(id: number): Observable<Review[]> {
 
-    return this.http.get<Review[]>(`api/reviews/?id_entry=${id}`).pipe(
+    return this.http.get<Review[]>(`http://localhost:3001/api/reviews/?id_entry=${id}`).pipe(
       catchError(this.handleError<Review[]>('getReviews', []))
     );
   }

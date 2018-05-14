@@ -8,7 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable()
 export class ProductService {
-  private productsUrl = 'api/products';  // URL to web api
+  private productsUrl = 'http://localhost:3001/api/products';
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
