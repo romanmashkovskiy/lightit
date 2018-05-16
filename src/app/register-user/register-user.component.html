@@ -1,19 +1,36 @@
 <div>
-  <label>Username:
-    <input #username />
-  </label>
 
-  <label>e-mail:
-    <input #email/>
-  </label>
+  <div class="form-group">
+    <label>Username
+    <input class="form-control" [(ngModel)]="user.name" #name="ngModel" required/>
+    </label>
+    <div [hidden]="name.valid || name.untouched" class="alert alert-danger">
+      Incorrect name
+    </div>
+  </div>
 
+  <div class="form-group">
+    <label>E-mail:
+    <input class="form-control" [(ngModel)]="user.email" #email="ngModel" required email/>
+    </label>
+    <div [hidden]="email.valid || email.untouched" class="alert alert-danger">
+      Incorrect email
+    </div>
+  </div>
 
-  <label>Password:
-    <input type="password" #password />
-  </label>
+  <div class="form-group">
+    <label>Password:
+    <input class="form-control" type="password" [(ngModel)]="user.password" #password="ngModel" required/>
+    </label>
+    <div [hidden]="password.valid || password.untouched" class="alert alert-danger">
+      Incorrect password
+    </div>
+  </div>
 
-  <button (click)="registerUser(username.value, email.value, password.value)">
-    register
-  </button>
+  <div class="form-group">
+    <button class="btn btn-default" [disabled]="email.invalid || password.invalid" (click)="registerUser(name.value, email.value, password.value); name.value=email.value=password.value=''">
+      Login
+    </button>
+  </div>
 
 </div>

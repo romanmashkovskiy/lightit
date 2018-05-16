@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {UserService} from "./user.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,8 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Product catalog';
+
+  constructor(public userService: UserService) {
+
+  }
 }

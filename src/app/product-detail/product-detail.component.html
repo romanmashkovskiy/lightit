@@ -5,26 +5,46 @@
   <div><span>text: </span>{{product.text}}</div>
   <div><span>img: </span>{{product.img}}</div>
 
-  <button (click)="goBack()">go back</button>
+
 
   <div>
     <h2>Reviews</h2>
-    <ul class="reviews">
+    <ul>
       <li *ngFor="let review of reviews">
-        <span class="badge">Rate:{{review.rate}}</span> {{review.text}}
+        <span>Rate:{{review.rate}},</span> {{review.text}}
       </li>
     </ul>
   </div>
 
-  <div>
+  <div *ngIf="!userService.isAuthenticated()">
+    <h3>To be able to leave a review, log in or register</h3>
+  </div>
+
+  <div *ngIf="userService.isAuthenticated()">
+    <h3>Add your review</h3>
+  <div class="form-group">
     <label>Rate:
-      <input #rate />
+    <input class="form-control" [(ngModel)]="review.rate" #rate="ngModel" required pattern="[1-5]"/>
     </label>
+    <div [hidden]="rate.valid || rate.untouched" class="alert alert-danger">
+      Incorrect rate. Please rate the product on a scale of 1 to 5
+    </div>
+  </div>
+
+  <div class="form-group">
     <label>Review:
-      <input #review />
+      <textarea class="form-control" [(ngModel)]=review.text #text="ngModel" required> </textarea>
     </label>
-    <button (click)="addReview(rate.value, review.value); rate.value=review.value=''">
-      add
+    <div [hidden]="text.valid || text.untouched" class="alert alert-danger">
+      The field can't be empty
+    </div>
+  </div>
+
+  <div class="form-group">
+    <button class="btn btn-default" [disabled]="rate.invalid || text.invalid" (click)="addReview(+rate.value, text.value)">
+      Add
     </button>
   </div>
+  </div>
+
 </div>

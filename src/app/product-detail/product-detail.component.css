@@ -30,3 +30,23 @@
   margin-right: .8em;
   border-radius: 4px 0 0 4px;
 }
+
+input.ng-touched.ng-invalid {
+  border:solid red 2px;
+}
+input.ng-touched.ng-valid {
+  border:solid green 2px;
+}
+
+textarea {
+  display:block;
+  width:600px;
+  height:150px;
+}
+
+textarea.ng-touched.ng-invalid {
+  border:solid red 2px;
+}
+textarea.ng-touched.ng-valid {
+  border:solid green 2px;
+}

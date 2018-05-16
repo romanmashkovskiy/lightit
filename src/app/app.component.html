@@ -1,11 +1,43 @@
-<h1>{{title}}</h1>
-<nav>
-  <a routerLink="/signin">Sign In</a>
-  <a routerLink="/register">Register</a>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
+
+      <button
+        class="btn btn-primary btn-margin"
+        *ngIf="!userService.isAuthenticated()"
+        routerLink="/signin">
+        Log In
+      </button>
+
+
+      <button
+        class="btn btn-primary btn-margin"
+        *ngIf="userService.isAuthenticated()"
+        (click)="userService.logout()">
+        Log Out
+      </button>
+
+      <button
+        class="btn btn-primary btn-margin"
+        *ngIf="!userService.isAuthenticated()"
+        routerLink="/register">
+        Register
+      </button>
+
+
+    </div>
+  </div>
 </nav>
 
-<nav>
+<nav class="navbar navbar-default">
+  <div class="container-fluid">
+    <div class="navbar-header">
   <a routerLink="/dashboard">Dashboard</a>
   <a routerLink="/products">Products</a>
+    </div>
+  </div>
 </nav>
+
+<main class="container">
 <router-outlet></router-outlet>
+</main>

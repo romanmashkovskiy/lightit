@@ -5,7 +5,7 @@ import {ProductService} from "../product.service";
 import { Location } from '@angular/common';
 import {Review} from "../models/review";
 import {ReviewService} from "../review.service";
-import {User} from "../models/user";
+import {UserService} from "../user.service";
 
 @Component({
   selector: 'app-product-detail',
@@ -16,19 +16,21 @@ import {User} from "../models/user";
 export class ProductDetailComponent implements OnInit {
   @Input() product: Product;
   reviews: Review[];
+  review: Review = new Review();
+
 
   constructor(
     private route: ActivatedRoute,
     private productService: ProductService,
     private reviewService: ReviewService,
-    private location: Location
+    public userService: UserService
   ) {
   }
 
   ngOnInit() {
     this.getProduct();
-  }
 
+  }
 
   getProduct(): void {
     const id = +this.route.snapshot.paramMap.get('id');
@@ -49,7 +51,5 @@ export class ProductDetailComponent implements OnInit {
 
 
 
-  goBack(): void {
-    this.location.back();
-  }
+
 }

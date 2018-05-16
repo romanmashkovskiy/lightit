@@ -6,11 +6,11 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {HttpClientModule} from "@angular/common/http";
-import {HttpClientInMemoryWebApiModule} from "angular-in-memory-web-api";
-import { InMemoryDataService }  from './in-memory-data.service';
 import { UsersComponent } from './users/users.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { SigninUserComponent } from './signin-user/signin-user.component';
+import {UserService} from "./user.service";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -27,15 +27,9 @@ import { SigninUserComponent } from './signin-user/signin-user.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-
-// The HttpClientInMemoryWebApiModule module intercepts HTTP requests
-// and returns simulated server responses.
-// Remove it when a real server is ready to receive requests.
-    //HttpClientInMemoryWebApiModule.forRoot(
-    //  InMemoryDataService, { dataEncapsulation: false }
-    //)
+    FormsModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

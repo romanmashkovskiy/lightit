@@ -4,6 +4,10 @@ import {of} from "rxjs/observable/of";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import { catchError, map, tap } from 'rxjs/operators';
 import {User} from "./models/user";
+import {Authentication} from "./models/authentication";
+import {Router} from "@angular/router";
+import {CurrentUser} from "./models/current-user";
+
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -16,7 +20,8 @@ export class UserService {
   private userRegisterUrl = 'http://localhost:3001/auth/registration';
   private userLoginUrl= 'http://localhost:3001/auth/login';
 
-  currentUser: User;
+  authResult: Authentication;
+  currentUser: CurrentUser;
 
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
@@ -25,28 +30,43 @@ export class UserService {
     };
   }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private router: Router) { }
 
-  getUsers(): Observable<User[]> {
-    return this.http.get<User[]>(this.usersUrl)
-      .pipe(
-        catchError(this.handleError('getUsers', []))
-      );
-  }
-
-  registerUser (user: User): Observable<User> {
-    return this.http.post<User>(this.userRegisterUrl, user, httpOptions).pipe(
-      tap(data => { this.currentUser = data; console.log(this.currentUser)}),
-      catchError(this.handleError<User>('addUser'))
+  registerUser (user: User): Observable<Authentication> {
+    return this.http.post<Authentication>(this.userRegisterUrl, user, httpOptions).pipe(
+      tap(data => { this.authResult = data; }),
+      catchError(this.handleError<Authentication>('addUser'))
     );
   }
 
-  loginUser (user: User): Observable<User> {
-    return this.http.post<User>(this.userLoginUrl, user, httpOptions).pipe(
-      tap(data => { this.currentUser = data; console.log(this.currentUser)}),
-      catchError(this.handleError<User>('loginUser'))
+  loginUser (user: User): Observable<Authentication> {
+    return this.http.post<Authentication>(this.userLoginUrl, user, httpOptions).pipe(
+      tap(data => { this.authResult = data; }),
+      catchError(this.handleError<Authentication>('loginUser'))
     );
   }
 
+  public setSession(authResult): void {
+    this.currentUser = this.parseJwt(authResult.access_token);
+    const expiresAt = JSON.stringify(this.currentUser.exp * 1000 );
+    localStorage.setItem('access_token', authResult.access_token);
+    localStorage.setItem('expires_at', expiresAt);
+  }
 
+  public logout(): void {
+    localStorage.removeItem('access_token');
+    localStorage.removeItem('expires_at');
+    this.router.navigate(['products']);
+  }
+
+  public isAuthenticated(): boolean {
+    const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
+    return new Date().getTime() < expiresAt;
+  }
+
+  private parseJwt (token) {
+    let base64Url = token.split('.')[1];
+    let base64 = base64Url.replace('-', '+').replace('_', '/');
+    return JSON.parse(window.atob(base64));
+  };
 }
