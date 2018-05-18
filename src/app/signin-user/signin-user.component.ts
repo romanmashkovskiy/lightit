@@ -10,6 +10,7 @@ import {User} from "../models/user";
 export class SigninUserComponent implements OnInit {
 
   user: User = new User();
+  errorMessage: boolean = false;
 
   constructor(private userService: UserService) { }
 
@@ -17,7 +18,9 @@ export class SigninUserComponent implements OnInit {
     this.userService.loginUser({email, password} as User)
       .subscribe(data => {if (data.success) {
         this.userService.setSession(data);
-        }
+         } else {
+        this.errorMessage = true;
+      }
       });
   }
 

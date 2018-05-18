@@ -1,9 +1,9 @@
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
-    <div class="navbar-header">
 
+      <form class="form-inline">
       <button
-        class="btn btn-primary btn-margin"
+        class="btn btn-primary my-2 my-sm-0"
         *ngIf="!userService.isAuthenticated()"
         routerLink="/signin">
         Log In
@@ -11,30 +11,39 @@
 
 
       <button
-        class="btn btn-primary btn-margin"
+        class="btn btn-primary my-2 my-sm-0"
         *ngIf="userService.isAuthenticated()"
         (click)="userService.logout()">
         Log Out
       </button>
 
       <button
-        class="btn btn-primary btn-margin"
+        class="btn btn-primary my-2 my-sm-0"
         *ngIf="!userService.isAuthenticated()"
         routerLink="/register">
         Register
       </button>
 
-
+      </form>
     </div>
-  </div>
+
 </nav>
 
-<nav class="navbar navbar-default">
+<nav class="navbar navbar-dark bg-dark">
   <div class="container-fluid">
-    <div class="navbar-header">
-  <a routerLink="/dashboard">Dashboard</a>
-  <a routerLink="/products">Products</a>
-    </div>
+
+    <form class="form-inline">
+      <button class="btn btn-primary my-2 my-sm-0 mr-2"
+              routerLink="/dashboard" type="button">
+        Dashboard
+      </button>
+
+      <button class="btn btn-primary my-2 my-sm-0 mr-2"
+              routerLink="/products" type="button">
+        Products
+      </button>
+
+    </form>
   </div>
 </nav>
 

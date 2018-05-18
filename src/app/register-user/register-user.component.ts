@@ -10,6 +10,7 @@ import {UserService} from "../user.service";
 export class RegisterUserComponent implements OnInit {
 
   user: User = new User();
+  errorMessage: boolean = false;
 
   constructor(private userService: UserService) { }
 
@@ -17,7 +18,9 @@ export class RegisterUserComponent implements OnInit {
     this.userService.registerUser({name, email, password} as User)
       .subscribe(data => {if (data.success) {
         this.userService.setSession(data);
-        }
+        } else {
+        this.errorMessage = true;
+      }
       });
   }
 

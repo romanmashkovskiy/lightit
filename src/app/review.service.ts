@@ -24,21 +24,21 @@ export class ReviewService {
   constructor(private http: HttpClient, private userService: UserService) { }
 
   getReviews(id_entry: number): Observable<Review[]> {
-    console.log(httpOptions);
+    //httpOptions.headers.set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
     return this.http.get<Review[]>(`${this.reviewsUrl}/${id_entry}`, {
       headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`)
-    }
-    )
+    })
       .pipe(
       catchError(this.handleError<Review[]>('getReviews', []))
     );
   }
 
   addReview(review: Review): Observable<Review> {
-
+    //httpOptions.headers.set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
     return this.http.post<Review>(this.reviewsUrl, review, {
       headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`)
-    }).pipe(
+    })
+      .pipe(
       catchError(this.handleError<Review>('addReview'))
     );
   }

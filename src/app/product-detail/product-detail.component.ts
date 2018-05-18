@@ -28,7 +28,6 @@ export class ProductDetailComponent implements OnInit {
 
   ngOnInit() {
     this.getProduct();
-
   }
 
   getProduct(): void {
@@ -41,7 +40,6 @@ export class ProductDetailComponent implements OnInit {
   getReviews(id: number): void {
     this.reviewService.getReviews(id)
       .subscribe(reviews => this.reviews = reviews);
-
   }
 
   addReview(rate: number, text: string): void {
@@ -50,7 +48,6 @@ export class ProductDetailComponent implements OnInit {
     this.reviewService.addReview({rate, text, id_user, id_entry } as Review).subscribe(review => {
       this.reviews.push(review);
     });
-
   }
 
 

@@ -29,8 +29,12 @@
 
   <div class="form-group">
     <button class="btn btn-default" [disabled]="email.invalid || password.invalid" (click)="registerUser(name.value, email.value, password.value); name.value=email.value=password.value=''">
-      Login
+      Register
     </button>
+  </div>
+
+  <div *ngIf="errorMessage">
+    <h3>such e-mail already exists</h3>
   </div>
 
 </div>

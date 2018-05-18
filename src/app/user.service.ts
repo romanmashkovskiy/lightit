@@ -35,14 +35,14 @@ export class UserService {
   registerUser (user: User): Observable<Authentication> {
     return this.http.post<Authentication>(this.userRegisterUrl, user, httpOptions).pipe(
       tap(data => { this.authResult = data; }),
-      catchError(this.handleError<Authentication>('addUser'))
+      catchError(this.handleError<Authentication>('addUser',{success: false, access_token: undefined}))
     );
   }
 
   loginUser (user: User): Observable<Authentication> {
     return this.http.post<Authentication>(this.userLoginUrl, user, httpOptions).pipe(
       tap(data => { this.authResult = data; }),
-      catchError(this.handleError<Authentication>('loginUser'))
+      catchError(this.handleError<Authentication>('loginUser', {success: false, access_token: undefined}))
     );
   }
 
