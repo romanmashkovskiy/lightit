@@ -16,7 +16,7 @@ const httpOptions = {
 
 @Injectable()
 export class UserService {
-  private usersUrl = 'http://localhost:3001/api/users';
+
   private userRegisterUrl = 'http://localhost:3001/auth/registration';
   private userLoginUrl= 'http://localhost:3001/auth/login';
 
@@ -51,6 +51,7 @@ export class UserService {
     const expiresAt = JSON.stringify(this.currentUser.exp * 1000 );
     localStorage.setItem('access_token', authResult.access_token);
     localStorage.setItem('expires_at', expiresAt);
+    this.router.navigate(['products']);
   }
 
   public logout(): void {

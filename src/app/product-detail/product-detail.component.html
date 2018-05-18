@@ -22,6 +22,7 @@
 
   <div *ngIf="userService.isAuthenticated()">
     <h3>Add your review</h3>
+
   <div class="form-group">
     <label>Rate:
     <input class="form-control" [(ngModel)]="review.rate" #rate="ngModel" required pattern="[1-5]"/>
@@ -41,7 +42,8 @@
   </div>
 
   <div class="form-group">
-    <button class="btn btn-default" [disabled]="rate.invalid || text.invalid" (click)="addReview(+rate.value, text.value)">
+    <button class="btn btn-default" [disabled]="rate.invalid || text.invalid"
+            (click)="addReview(rate.value, text.value); rate.value = text.value = ''">
       Add
     </button>
   </div>

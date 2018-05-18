@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Product} from "../models/product";
 import {ActivatedRoute} from "@angular/router";
 import {ProductService} from "../product.service";
-import { Location } from '@angular/common';
 import {Review} from "../models/review";
 import {ReviewService} from "../review.service";
 import {UserService} from "../user.service";
@@ -45,7 +44,12 @@ export class ProductDetailComponent implements OnInit {
 
   }
 
-  addReview(rate: number, text: string) {
+  addReview(rate: number, text: string): void {
+    const id_user = this.userService.currentUser.id;
+    const id_entry = +this.route.snapshot.paramMap.get('id');
+    this.reviewService.addReview({rate, text, id_user, id_entry } as Review).subscribe(review => {
+      this.reviews.push(review);
+    });
 
   }
 

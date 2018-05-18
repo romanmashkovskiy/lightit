@@ -3,7 +3,6 @@ import { RouterModule, Routes } from '@angular/router';
 import {ProductsComponent} from "./products/products.component";
 import {DashboardComponent} from "./dashboard/dashboard.component";
 import {ProductDetailComponent} from "./product-detail/product-detail.component";
-import {UsersComponent} from "./users/users.component";
 import {RegisterUserComponent} from "./register-user/register-user.component";
 import {SigninUserComponent} from "./signin-user/signin-user.component";
 

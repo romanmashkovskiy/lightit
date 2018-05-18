@@ -6,7 +6,6 @@ import { ProductDetailComponent } from './product-detail/product-detail.componen
 import { AppRoutingModule } from './app-routing.module';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import {HttpClientModule} from "@angular/common/http";
-import { UsersComponent } from './users/users.component';
 import { RegisterUserComponent } from './register-user/register-user.component';
 import { SigninUserComponent } from './signin-user/signin-user.component';
 import {UserService} from "./user.service";
@@ -19,7 +18,6 @@ import {FormsModule} from "@angular/forms";
     ProductsComponent,
     ProductDetailComponent,
     DashboardComponent,
-    UsersComponent,
     RegisterUserComponent,
     SigninUserComponent
   ],
