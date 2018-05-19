@@ -65,6 +65,11 @@ export class UserService {
     return new Date().getTime() < expiresAt;
   }
 
+  public restoreUser() {
+    const accessToken: String = localStorage.getItem('access_token');
+    this.currentUser = this.parseJwt(accessToken);
+  }
+
   private parseJwt (token) {
     let base64Url = token.split('.')[1];
     let base64 = base64Url.replace('-', '+').replace('_', '/');

@@ -28,7 +28,7 @@
   </div>
 
   <div class="form-group">
-    <button class="btn btn-default" [disabled]="email.invalid || password.invalid" (click)="registerUser(name.value, email.value, password.value); name.value=email.value=password.value=''">
+    <button class="btn btn-primary btn-lg" [disabled]="email.invalid || password.invalid" (click)="registerUser(name.value, email.value, password.value); name.value=email.value=password.value=''">
       Register
     </button>
   </div>

@@ -43,7 +43,7 @@
 
   <div class="form-group">
     <button class="btn btn-default" [disabled]="rate.invalid || text.invalid"
-            (click)="addReview(rate.value, text.value); rate.value = text.value = ''">
+            (click)="addReview(rate.value, text.value);">
       Add
     </button>
   </div>

@@ -7,7 +7,9 @@ import {Review} from "./models/review";
 import {UserService} from "./user.service";
 
 const httpOptions = {
-  headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  headers: new HttpHeaders()
+          .append('Content-Type', 'application/json')
+          .append('Authorization', `Bearer ${localStorage.getItem('access_token')}`)
 };
 
 @Injectable()
@@ -25,19 +27,14 @@ export class ReviewService {
 
   getReviews(id_entry: number): Observable<Review[]> {
     //httpOptions.headers.set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    return this.http.get<Review[]>(`${this.reviewsUrl}/${id_entry}`, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`)
-    })
+    return this.http.get<Review[]>(`${this.reviewsUrl}/${id_entry}`)
       .pipe(
       catchError(this.handleError<Review[]>('getReviews', []))
     );
   }
 
   addReview(review: Review): Observable<Review> {
-    //httpOptions.headers.set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
-    return this.http.post<Review>(this.reviewsUrl, review, {
-      headers: new HttpHeaders().set('Authorization', `Bearer ${localStorage.getItem('access_token')}`)
-    })
+    return this.http.post<Review>(this.reviewsUrl, review, httpOptions)
       .pipe(
       catchError(this.handleError<Review>('addReview'))
     );

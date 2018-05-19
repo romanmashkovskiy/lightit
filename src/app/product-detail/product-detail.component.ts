@@ -49,8 +49,4 @@ export class ProductDetailComponent implements OnInit {
       this.reviews.push(review);
     });
   }
-
-
-
-
 }
