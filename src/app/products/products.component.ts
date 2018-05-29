@@ -10,7 +10,6 @@ import {ProductService} from "../product.service";
 })
 export class ProductsComponent implements OnInit {
   products: Product[];
-  imgPath: String = 'http://localhost:3001/';
 
   constructor(private productService: ProductService) { }
 

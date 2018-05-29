@@ -1,9 +1,8 @@
-<h2>Products</h2>
+<h2>Список товаров</h2>
 <ul>
   <li *ngFor="let product of products">
     <a routerLink="/detail/{{product.id}}">
-      <span>{{product.id}}</span> {{product.title}}
-      <img [src]="imgPath + product.img">
+      {{product.title}}
     </a>
   </li>
 </ul>

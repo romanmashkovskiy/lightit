@@ -1,40 +1,74 @@
-<div>
+<form class="form">
+  <mat-form-field class="full-width">
+    <input matInput placeholder="Имя пользователя" [(ngModel)]="user.name" #name="ngModel" name="username " required>
+    <mat-error *ngIf="!name.valid && !name.untouched">
+      Имя пользователя <strong>обязательно</strong>
+    </mat-error>
+  </mat-form-field>
 
-  <div class="form-group">
-    <label>Username
-    <input class="form-control" [(ngModel)]="user.name" #name="ngModel" required/>
-    </label>
-    <div [hidden]="name.valid || name.untouched" class="alert alert-danger">
-      Incorrect name
-    </div>
-  </div>
+  <mat-form-field class="full-width">
+    <input matInput placeholder="E-mail" [(ngModel)]="user.email" #email="ngModel" name="email " required email>
+    <mat-error *ngIf="!email.valid && !email.untouched">
+      Введите корректный e-mail
+    </mat-error>
+  </mat-form-field>
 
-  <div class="form-group">
-    <label>E-mail:
-    <input class="form-control" [(ngModel)]="user.email" #email="ngModel" required email/>
-    </label>
-    <div [hidden]="email.valid || email.untouched" class="alert alert-danger">
-      Incorrect email
-    </div>
-  </div>
+  <mat-form-field class="full-width">
+    <input matInput type="password" placeholder="Пароль" [(ngModel)]="user.password" #password="ngModel" name="password " required>
+    <mat-error *ngIf="!password.valid && !password.untouched">
+      Пароль <strong>обязателен</strong>
+    </mat-error>
+  </mat-form-field>
 
-  <div class="form-group">
-    <label>Password:
-    <input class="form-control" type="password" [(ngModel)]="user.password" #password="ngModel" required/>
-    </label>
-    <div [hidden]="password.valid || password.untouched" class="alert alert-danger">
-      Incorrect password
-    </div>
-  </div>
-
-  <div class="form-group">
-    <button class="btn btn-primary btn-lg" [disabled]="email.invalid || password.invalid" (click)="registerUser(name.value, email.value, password.value); name.value=email.value=password.value=''">
-      Register
-    </button>
-  </div>
+  <button mat-raised-button color="accent" [disabled]="email.invalid || password.invalid"
+          (click)="registerUser(name.value, email.value, password.value); name.value=email.value=password.value=''">Регистрация</button>
 
   <div *ngIf="errorMessage">
-    <h3>such e-mail already exists</h3>
+  <h3>Пользователь с таким e-mail уже существует</h3>
   </div>
 
-</div>
+</form>
+
+
+
+
+<!--<div>-->
+
+  <!--<div class="form-group">-->
+    <!--<label>Username-->
+    <!--<input class="form-control" [(ngModel)]="user.name" #name="ngModel" required/>-->
+    <!--</label>-->
+    <!--<div [hidden]="name.valid || name.untouched" class="alert alert-danger">-->
+      <!--Incorrect name-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="form-group">-->
+    <!--<label>E-mail:-->
+    <!--<input class="form-control" [(ngModel)]="user.email" #email="ngModel" required email/>-->
+    <!--</label>-->
+    <!--<div [hidden]="email.valid || email.untouched" class="alert alert-danger">-->
+      <!--Incorrect email-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="form-group">-->
+    <!--<label>Password:-->
+    <!--<input class="form-control" type="password" [(ngModel)]="user.password" #password="ngModel" required/>-->
+    <!--</label>-->
+    <!--<div [hidden]="password.valid || password.untouched" class="alert alert-danger">-->
+      <!--Incorrect password-->
+    <!--</div>-->
+  <!--</div>-->
+
+  <!--<div class="form-group">-->
+    <!--<button class="btn btn-primary btn-lg" [disabled]="email.invalid || password.invalid" (click)="registerUser(name.value, email.value, password.value); name.value=email.value=password.value=''">-->
+      <!--Register-->
+    <!--</button>-->
+  <!--</div>-->
+
+  <!--<div *ngIf="errorMessage">-->
+    <!--<h3>such e-mail already exists</h3>-->
+  <!--</div>-->
+
+<!--</div>-->

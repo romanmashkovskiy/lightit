@@ -16,6 +16,7 @@ export class ProductDetailComponent implements OnInit {
   @Input() product: Product;
   reviews: Review[];
   review: Review = new Review();
+  imgPath: String = 'http://localhost:3001/';
 
 
   constructor(

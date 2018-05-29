@@ -1,34 +1,36 @@
 <div *ngIf="product">
 
-  <h2>{{ product.title | uppercase }} Details</h2>
-  <div><span>id: </span>{{product.id}}</div>
-  <div><span>text: </span>{{product.text}}</div>
-  <div><span>img: </span>{{product.img}}</div>
+  <h2>{{ product.title | uppercase }}</h2>
+  <h3>Описание: </h3>
+  <div>{{product.text}}</div>
+  <br>
+  <img [src]="imgPath + product.img">
 
 
 
   <div>
-    <h2>Reviews</h2>
+    <h3>Отзывы</h3>
     <ul>
       <li *ngFor="let review of reviews">
-        <span>Rate:{{review.rate}},</span> {{review.text}}
+        <div>Оценка: {{review.rate}},</div>
+        <div>Текст отзыва:<br> {{review.text}}</div>
       </li>
     </ul>
   </div>
 
   <div *ngIf="!userService.isAuthenticated()">
-    <h3>To be able to leave a review, log in or register</h3>
+    <h4>Чтобы оставлять отзывы войдите или зарегистрируйтесь.</h4>
   </div>
 
   <div *ngIf="userService.isAuthenticated()">
-    <h3>Add your review</h3>
+    <h4>Добавьте свой отзыв</h4>
 
   <div class="form-group">
     <label>Rate:
     <input class="form-control" [(ngModel)]="review.rate" #rate="ngModel" required pattern="[1-5]"/>
     </label>
     <div [hidden]="rate.valid || rate.untouched" class="alert alert-danger">
-      Incorrect rate. Please rate the product on a scale of 1 to 5
+      Неверная оценка. Оцените товар по шкале от 1 до 5.
     </div>
   </div>
 
@@ -37,7 +39,7 @@
       <textarea class="form-control" [(ngModel)]=review.text #text="ngModel" required> </textarea>
     </label>
     <div [hidden]="text.valid || text.untouched" class="alert alert-danger">
-      The field can't be empty
+      Поле не может быть пустым
     </div>
   </div>
 
