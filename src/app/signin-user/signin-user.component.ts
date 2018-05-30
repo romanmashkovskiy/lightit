@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from "../user.service";
-import {User} from "../models/user";
+import {UserService} from '../user.service';
+import {User} from '../models/user';
 
 @Component({
   selector: 'app-signin-user',
@@ -10,7 +10,7 @@ import {User} from "../models/user";
 export class SigninUserComponent implements OnInit {
 
   user: User = new User();
-  errorMessage: boolean = false;
+  errorMessage = false;
 
   constructor(private userService: UserService) { }
 
