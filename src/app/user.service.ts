@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import {Observable} from "rxjs/Observable";
-import {of} from "rxjs/observable/of";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import { catchError, map, tap } from 'rxjs/operators';
-import {User} from "./models/user";
-import {Authentication} from "./models/authentication";
-import {Router} from "@angular/router";
-import {CurrentUser} from "./models/current-user";
+import {Observable} from 'rxjs/Observable';
+import {of} from 'rxjs/observable/of';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { catchError, tap } from 'rxjs/operators';
+import {User} from './models/user';
+import {Authentication} from './models/authentication';
+import {Router} from '@angular/router';
+import {CurrentUser} from './models/current-user';
 
 
 const httpOptions = {
@@ -18,7 +18,7 @@ const httpOptions = {
 export class UserService {
 
   private userRegisterUrl = 'http://localhost:3001/auth/registration';
-  private userLoginUrl= 'http://localhost:3001/auth/login';
+  private userLoginUrl = 'http://localhost:3001/auth/login';
 
   authResult: Authentication;
   currentUser: CurrentUser;
@@ -35,7 +35,7 @@ export class UserService {
   registerUser (user: User): Observable<Authentication> {
     return this.http.post<Authentication>(this.userRegisterUrl, user, httpOptions).pipe(
       tap(data => { this.authResult = data; }),
-      catchError(this.handleError<Authentication>('addUser',{success: false, access_token: undefined}))
+      catchError(this.handleError<Authentication>('addUser', {success: false, access_token: undefined}))
     );
   }
 
@@ -71,8 +71,8 @@ export class UserService {
   }
 
   private parseJwt (token) {
-    let base64Url = token.split('.')[1];
-    let base64 = base64Url.replace('-', '+').replace('_', '/');
+    const base64Url = token.split('.')[1];
+    const base64 = base64Url.replace('-', '+').replace('_', '/');
     return JSON.parse(window.atob(base64));
-  };
+  }
 }

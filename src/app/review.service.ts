@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import {catchError, tap} from "rxjs/operators";
-import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Observable} from "rxjs/Observable";
-import {of} from "rxjs/observable/of";
-import {Review} from "./models/review";
-import {UserService} from "./user.service";
+import {catchError} from 'rxjs/operators';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {Observable} from 'rxjs/Observable';
+import {of} from 'rxjs/observable/of';
+import {Review} from './models/review';
+import {UserService} from './user.service';
 
 const httpOptions = {
   headers: new HttpHeaders()
@@ -26,7 +26,6 @@ export class ReviewService {
   constructor(private http: HttpClient, private userService: UserService) { }
 
   getReviews(id_entry: number): Observable<Review[]> {
-    //httpOptions.headers.set('Authorization', `Bearer ${localStorage.getItem('access_token')}`);
     return this.http.get<Review[]>(`${this.reviewsUrl}/${id_entry}`)
       .pipe(
       catchError(this.handleError<Review[]>('getReviews', []))

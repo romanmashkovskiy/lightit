@@ -28,9 +28,6 @@ nav {
   background-color: #455a64;
   padding: 10px;
   text-align: center;
-}
-
-nav {
   order: -1;
 }
 
@@ -40,6 +37,9 @@ header, footer {
   text-align: center;
 }
 
+a {
+  margin: 10px;
+}
 @media screen and (min-width: 600px) {
 
   .contain{

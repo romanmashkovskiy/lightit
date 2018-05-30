@@ -1,10 +1,10 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {Product} from "../models/product";
-import {ActivatedRoute} from "@angular/router";
-import {ProductService} from "../product.service";
-import {Review} from "../models/review";
-import {ReviewService} from "../review.service";
-import {UserService} from "../user.service";
+import {Product} from '../models/product';
+import {ActivatedRoute} from '@angular/router';
+import {ProductService} from '../product.service';
+import {Review} from '../models/review';
+import {ReviewService} from '../review.service';
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-product-detail',

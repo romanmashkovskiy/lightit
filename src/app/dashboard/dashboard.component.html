@@ -1,9 +1,10 @@
 <h2>Топ товаров</h2>
-<ul>
-  <li *ngFor="let product of products">
-    <a routerLink="/detail/{{product.id}}">
-      <h4>{{product.title}}</h4>
+<div class="container">
+  <a class="item" *ngFor="let product of products"
+     routerLink="/detail/{{product.id}}">
+    <div>
       <img [src]="imgPath + product.img">
-    </a>
-  </li>
-</ul>
+      <h6>{{product.title}}</h6>
+    </div>
+  </a>
+</div>

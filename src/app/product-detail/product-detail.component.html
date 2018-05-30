@@ -6,8 +6,6 @@
   <br>
   <img [src]="imgPath + product.img">
 
-
-
   <div>
     <h3>Отзывы</h3>
     <ul>
@@ -25,30 +23,26 @@
   <div *ngIf="userService.isAuthenticated()">
     <h4>Добавьте свой отзыв</h4>
 
-  <div class="form-group">
-    <label>Rate:
-    <input class="form-control" [(ngModel)]="review.rate" #rate="ngModel" required pattern="[1-5]"/>
-    </label>
-    <div [hidden]="rate.valid || rate.untouched" class="alert alert-danger">
-      Неверная оценка. Оцените товар по шкале от 1 до 5.
-    </div>
-  </div>
+    <form class="form">
 
-  <div class="form-group">
-    <label>Review:
-      <textarea class="form-control" [(ngModel)]=review.text #text="ngModel" required> </textarea>
-    </label>
-    <div [hidden]="text.valid || text.untouched" class="alert alert-danger">
-      Поле не может быть пустым
-    </div>
-  </div>
+    <mat-form-field class="full-width">
+      <input matInput placeholder="Ваша оценка от 1 до 5" [(ngModel)]="review.rate" #rate="ngModel" name="rate" required pattern="[1-5]">
+      <mat-error *ngIf="!rate.valid && !rate.untouched">
+        Неверная оценка. Оцените товар по шкале от 1 до 5
+      </mat-error>
+    </mat-form-field>
 
-  <div class="form-group">
-    <button class="btn btn-default" [disabled]="rate.invalid || text.invalid"
-            (click)="addReview(rate.value, text.value);">
-      Add
-    </button>
-  </div>
-  </div>
+      <mat-form-field class="full-width">
+        <textarea matInput placeholder="Текст отзыва" [(ngModel)]="review.text" #text="ngModel" name="text" required></textarea>
+        <mat-error *ngIf="!text.valid && !text.untouched">
+          Поле не может быть пустым.
+        </mat-error>
+      </mat-form-field>
 
+      <button mat-raised-button color="accent" [disabled]="rate.invalid || text.invalid"
+              (click)="addReview(+rate.value, text.value);">Добавить</button>
+
+    </form>
+
+  </div>
 </div>

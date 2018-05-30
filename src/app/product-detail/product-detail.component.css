@@ -1,19 +1,17 @@
-input.ng-touched.ng-invalid {
-  border:solid red 2px;
-}
-input.ng-touched.ng-valid {
-  border:solid green 2px;
-}
-
-textarea {
-  display:block;
-  width:600px;
-  height:150px;
+.form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
 }
 
-textarea.ng-touched.ng-invalid {
-  border:solid red 2px;
+.full-width {
+  width: 100%;
 }
-textarea.ng-touched.ng-valid {
-  border:solid green 2px;
+
+.full-width textarea {
+  height: 200px;
+}
+
+h2 {
+  text-align: center;
 }
